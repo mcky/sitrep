@@ -167,7 +167,7 @@ router.route('/twilio')
 		}
 
 			var report = new Report({
-			status: 'red'
+			status: status
 			, inputSource: 'sms'
 			, timestamp: Date.now()
 			, hasBeenViewed: false
