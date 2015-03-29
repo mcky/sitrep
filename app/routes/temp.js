@@ -156,7 +156,18 @@ router.route('/twilio')
 		if(typeof q === 'undefined'){
 			q = req.body.Body
 		}
-
 		console.log('search: ', q)
+
+			var report = new Report({
+			status: 'red'
+			, inputSource: 'sms'
+			, timestamp: Date.now()
+			, hasBeenViewed: false
+			, belongsTo: '5517f652f4d4d66bc1136e80'
+			// , belongsTo: correspondantId
+			// , message: req.body.message
+		})
+
+		report.save(function(err, report) {})
 	})
 module.exports = router
