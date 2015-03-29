@@ -305,6 +305,25 @@ body {
   font-size: 1.5em;
   margin-bottom: 0.2em; }
 
+.status {
+  margin-bottom: .5rem; }
+  .status:before {
+    content: 'i';
+    display: block;
+    float: left;
+    height: 1.3rem;
+    width: 1.3rem;
+    margin: .2rem .3rem 0 0;
+    border-radius: 100%;
+    background: currentColor;
+    color: transparent; }
+  .status--green:before {
+    background: #b2dba1; }
+  .status--amber:before {
+    background: #f5e79e; }
+  .status--red:before {
+    background: #833332; }
+
 .navbar {
   display: block;
   position: fixed;

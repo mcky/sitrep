@@ -4,5 +4,15 @@
 	{{phoneNumber}} <br>
 
 	<a href="/correspondents/{{_id}}/report" class="button">New Report</a>
+
+	<hr>
+	<b>Reports</b>
+
+	<ul>
+		{{#each ../reports}}
+			<li class="status status--{{status}}">{{timeAgo timestamp}}</li>
+		{{/each}}
+	</ul>
 </div>
 {{/with}}
+

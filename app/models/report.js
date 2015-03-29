@@ -4,6 +4,8 @@ var mongoose = require('mongoose')
 
 var Report = new Schema({
 	status: String
+	, inputSource: String
+	, belongsTo: String
 	, timestamp: Date
 	, hasBeenViewed: Boolean
 	, sentFrom: String // Phone #
@@ -13,8 +15,7 @@ var Report = new Schema({
 		, coordinates: String
 	}
 	, message: String
-	// , createdBy: String //ObjectID?
-	, content: [{
+	, source: [{
 		text: String
 	}]
 })

@@ -6,9 +6,9 @@
 	{{#unless correspondent}}
 	<div class="field">
 		<label>Correspondent</label>
-		<select>
+		<select name="correspondentIdPicker">
 			{{#each correspondents}}
-			<option>{{name}} ({{phoneNumber}})</option>
+			<option value="{{_id}}">{{name}} ({{phoneNumber}})</option>
 			{{/each}}
 		</select>
 	</div>
@@ -27,22 +27,17 @@
 	</div>
 
 	<div class="field">
-		<label>Sent from</label>
-		<input type="tel" name="phone" value="">
-	</div>
-
-	<div class="field">
 		<label>Location</label>
 		<input type="text" name="location" value="">
 	</div>
 
 	<div class="field">
 		<label>Message</label>
-		<input type="text" name="messafe" value="">
+		<input type="text" name="message" value="">
 	</div>
 
 	{{#if correspondent}}
-	<input type="hidden" name="id" value="{{correspondent._id}}">
+		<input type="hidden" name="correspondantId" value="{{correspondent._id}}">
 	{{/if}}
 
 	<input type="submit" value="Submit" class="auth-form__button">

@@ -1,9 +1,11 @@
 var express = require('express')
+	, async = require('async')
 	, router = express.Router()
 	, passport = require('passport')
 	, Account = require('../models/account')
 	, Report = require('../models/report')
 	, accountController = require('../controllers/accounts')
+	, twilio = require('twilio');
 
 router.get('/', function(req, res) {
 	res.render('home')
@@ -99,27 +101,62 @@ router.route('/correspondents/new')
 router.route('/correspondents/:id/report')
 	.get(function(req, res) {
 		Account
-		.findById(req.params.id)
-		.select('-hash -salt')
-		.exec(function(err, correspondent, count) {
-			res.render('reports/new', {
-				correspondent: correspondent
+			.findById(req.params.id)
+			.select('-hash -salt')
+			.exec(function(err, correspondent, count) {
+				res.render('reports/new', {
+					correspondent: correspondent
+				})
 			})
-		})
 	})
 
 router.route('/correspondents/:id')
 	.get(function(req, res) {
-		Account
-		.findById(req.params.id)
-		.select('-hash -salt')
-		.exec(function(err, correspondent, count) {
-			// res.json(correspondents)
+		async.waterfall([
+			function(callback){
+				Account
+					.findById(req.params.id)
+					.select('-hash -salt')
+					.exec(function(err, correspondent, count) {
+						callback(null, correspondent)
+					})
+			}
+			,function(correspondent, callback){
+				Report
+					.find({belongsTo: correspondent._id})
+					.select('-hash -salt')
+					.exec(function(err, correspondent2, count) {
+						callback(null, correspondent, correspondent2)
+					})
+			}
+		], function (err, result, res2) {
+			// res.json([result, res2])
 			res.render('correspondents/single', {
-				correspondent: correspondent
+				correspondent: result
+				, reports: res2
 			})
-		})
+
+		});
+		// ], function(err, results){
+		// 	// var correspondent = results[0]
+		// 	// var reports = results[1]
+		// 	res.json(results)
+		// 	// res.render('correspondents/single', {
+		// 	// 	correspondent: correspondent
+		// 	// 	, reports: reports
+		// 	// 	// , reports: [{str:'one'},{str:'two'}]
+		// 	// })
+		// })
 	})
 	// .delete
 
+router.route('/twilio')
+	.all(function(req, res) {
+		var q = req.param('q')
+		if(typeof q === 'undefined'){
+			q = req.body.Body
+		}
+
+		console.log('search: ', q)
+	})
 module.exports = router

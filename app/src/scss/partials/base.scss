@@ -176,3 +176,36 @@ body {
 		margin-bottom: 0.2em;
 	}
 }
+
+.status {
+	margin-bottom: .5rem;
+	&:before {
+		content: 'i';
+		display: block;
+		float: left;
+		height: 1.3rem;
+		width: 1.3rem;
+		margin: .2rem .3rem 0 0;
+		border-radius: 100%;
+		background: currentColor;
+		color: rgba(0,0,0,0);
+	}
+
+	&--green {
+		&:before {
+			background: darken(#dff0d8, 15%);
+		}
+	}
+
+	&--amber {
+		&:before {
+			background: darken(#fcf8e3, 15%);
+		}
+	}
+
+	&--red {
+		&:before {
+			background: darken(#b94a48, 15%);
+		}
+	}
+}

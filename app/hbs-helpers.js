@@ -22,6 +22,10 @@ module.exports = function(app){
 		}
 	})
 
+	hbs.registerHelper('timeAgo', function(context, options) {
+		return moment(context).fromNow()
+	})
+
 	hbs.registerHelper('component', function(component, options) {
 		var componentPath = __dirname + '/views/partials/blocks/'+ component +'.html'
 			, template = hbs.compile(fs.readFileSync(componentPath, 'utf8'))
