@@ -1,0 +1,38 @@
+<h1>Account</h1>
+
+<a href="/logout">Logout</a>
+<br><br>
+<!-- <pre>{{user}}</pre> -->
+<form action="/account" method="POST" class="clear">
+	<div class="field">
+		<label for="userEmail">Email</label>
+		<input type="email" name="userEmail" value="{{user.email}}">
+	</div>
+
+	<div class="field">
+		<label for="name">Name</label>
+		<input type="text" name="name" value="{{user.name}}">
+	</div>
+
+	<div class="field">
+		<label for="phoneNumber">Phone number</label>
+		<input type="text" name="phoneNumber" value="{{user.phoneNumber}}">
+	</div>
+
+	<input type="submit" value="Submit" class="float-right">
+</form>
+
+<hr>
+<h2>Delete my account</h2>
+<button class="modalTrigger" data-modal="deleteAccount">Delete</button>
+
+
+{{#component 'modal' title='Delete account' id='deleteAccountModal' visible=query.deleteModal}}
+	<form action="/account?_method=DELETE" method="POST" class="clear">
+		<p>Are you sure?</p>
+		<label for="password">Password</label>
+		<input type="password" name="password">
+		<!-- <input type="reset" value="Cancel" class="button--subtle" data-modalButton data-modal-close> -->
+		<input type="submit" value="Submit" class="float-right">
+	</form>
+{{/component}}

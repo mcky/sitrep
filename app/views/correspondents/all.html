@@ -1,0 +1,12 @@
+<h1>All correspondents</h1>
+
+<hr>
+<div>
+{{#each correspondents}}
+	<a href="/correspondents/{{_id}}">{{name}}</a> <br>
+	{{phoneNumber}} <br>
+	Status: -{{lastSatus}}- <br>
+	Time since checkin: -{{lastCheckinTime}}-
+	<hr>
+{{/each}}
+</div>

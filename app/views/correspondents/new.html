@@ -1,0 +1,32 @@
+<h1 class="page__header">Submit a new report</h1>
+
+<form action="/reports/new" method="POST">
+	<div class="field">
+		<label for="status">Status</label>
+		<label><input type="radio" name="status" value="green">Green</label>
+		<label><input type="radio" name="status" value="amber">Amber</label>
+		<label><input type="radio" name="status" value="red">Red</label>
+	</div>
+
+	<div class="field">
+		<label>Time</label>
+		<input type="text" name="time" value="{{now}}">
+	</div>
+
+	<div class="field">
+		<label>Sent from</label>
+		<input type="tel" name="phone" value="">
+	</div>
+
+	<div class="field">
+		<label>Location</label>
+		<input type="text" name="location" value="">
+	</div>
+
+	<div class="field">
+		<label>Message</label>
+		<input type="text" name="messafe" value="">
+	</div>
+
+	<input type="submit" value="Submit" class="auth-form__button">
+</form>
