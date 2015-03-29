@@ -15,7 +15,7 @@ router.route('/reports/new')
 		.exec(function(err, correspondents, count) {
 			// res.json(correspondents)
 			res.render('reports/new', {
-				blob: correspondents
+				correspondents: correspondents
 			})
 		})
 	})
