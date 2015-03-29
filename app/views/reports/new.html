@@ -1,5 +1,9 @@
-<h1 class="page__header">Submit a new report for {{correspondent.name}}</h1>
+<h1 class="page__header">
+	Submit a new report{{#if correspondent}} for {{correspondent.name}}{{/if}}
+</h1>
+
 <form action="/reports/new" method="POST">
+	{{#unless correspondent}}
 	<div class="field">
 		<label>Correspondent</label>
 		<select>
@@ -8,6 +12,7 @@
 			{{/each}}
 		</select>
 	</div>
+	{{/unless}}
 
 	<div class="field">
 		<label for="status">Status</label>
@@ -36,7 +41,9 @@
 		<input type="text" name="messafe" value="">
 	</div>
 
+	{{#if correspondent}}
 	<input type="hidden" name="id" value="{{correspondent._id}}">
+	{{/if}}
 
 	<input type="submit" value="Submit" class="auth-form__button">
 </form>
