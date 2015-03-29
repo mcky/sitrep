@@ -157,6 +157,14 @@ router.route('/twilio')
 			q = req.body.Body
 		}
 		console.log('search: ', q)
+		var status = 'red'
+		if (q === 'red' || q === 'r') {
+			status === 'red'
+		} else if (q === 'amber' || q === 'a') {
+			status === 'amber'
+		} else if (q === 'green' || q === 'g') {
+			status === 'green'
+		}
 
 			var report = new Report({
 			status: 'red'
