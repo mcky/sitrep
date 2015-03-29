@@ -162,11 +162,15 @@ router.route('/twilio')
 		console.log('sms::'+JSON.stringify(req.body)+'::')
 		console.log('search::'+q+'::')
 
-		if (q == 'red' || q == 'r') {
+		var red = ['r','red','RED','Red','Danger']
+		var amber = ['a','amber','AMBER','Amber','Warning']
+		var green = ['g','green','GREEN','Green','Safe']
+
+		if (~red.indexOf(q)) {
 			status = 'red'
-		} else if (q == 'amber' || q == 'a') {
+		} else if (~red.indexOf(q)) {
 			status = 'amber'
-		} else if (q == 'green' || q == 'g') {
+		} else if (~red.indexOf(q)) {
 			status = 'green'
 		}
 
