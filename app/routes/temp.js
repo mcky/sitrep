@@ -154,13 +154,14 @@ router.route('/correspondents/:id')
 
 router.route('/twilio')
 	.all(function(req, res) {
-		var q = req.param('q')
-		if(typeof q === 'undefined'){
-			q = req.body.Body
-		}
+		var q = req.param('q') || req.body.Body
+			, status = 'red'
+			, sentFrom = req.body.From || '0'
+		// var sentFrom = req.param('f') || req.body.From
+
 		console.log('sms::'+JSON.stringify(req.body)+'::')
 		console.log('search::'+q+'::')
-		var status = 'red'
+
 		if (q == 'red' || q == 'r') {
 			status = 'red'
 		} else if (q == 'amber' || q == 'a') {
@@ -174,6 +175,7 @@ router.route('/twilio')
 			, inputSource: 'sms'
 			, timestamp: Date.now()
 			, hasBeenViewed: false
+			, sentFrom: sentFrom
 			, belongsTo: '5517f9f3700340030082a2d5'
 			// , belongsTo: correspondantId
 			// , message: req.body.message
