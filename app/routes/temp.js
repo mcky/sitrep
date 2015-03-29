@@ -158,12 +158,12 @@ router.route('/twilio')
 		}
 		console.log('search: ', q)
 		var status = 'red'
-		if (q === 'red' || q === 'r') {
-			status === 'red'
-		} else if (q === 'amber' || q === 'a') {
-			status === 'amber'
-		} else if (q === 'green' || q === 'g') {
-			status === 'green'
+		if (q == 'red' || q == 'r') {
+			status == 'red'
+		} else if (q == 'amber' || q == 'a') {
+			status == 'amber'
+		} else if (q == 'green' || q == 'g') {
+			status == 'green'
 		}
 
 			var report = new Report({
@@ -177,5 +177,6 @@ router.route('/twilio')
 		})
 
 		report.save(function(err, report) {})
+		res.json({})
 	})
 module.exports = router
