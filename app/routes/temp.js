@@ -88,6 +88,14 @@ router.route('/correspondents')
 		})
 	})
 
+router.route('/correspondents/new')
+	.get(function(req, res) {
+		res.render('correspondents/new', {
+			// correspondents: correspondents
+		})
+	})
+	.post(accountController.newCorrespondent)
+
 router.route('/correspondents/:id/report')
 	.get(function(req, res) {
 		Account
@@ -99,7 +107,6 @@ router.route('/correspondents/:id/report')
 			})
 		})
 	})
-	.post(accountController.newCorrespondent)
 
 router.route('/correspondents/:id')
 	.get(function(req, res) {
@@ -113,5 +120,6 @@ router.route('/correspondents/:id')
 			})
 		})
 	})
+	// .delete
 
 module.exports = router

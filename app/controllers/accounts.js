@@ -12,14 +12,16 @@ accountController = {
 		}
 		Account.register(new Account({
 			email: email
-			, name: 'Joe smith'
+			, name: req.body.name
 			, isCorrespondent: true
-			, phoneNumber: '07805284648'
-		}), 'password', function(err) {
+			, phoneNumber: req.body.phoneNumber
+		}), 'password', function(err, correspondent) {
 			if (err) {
 				console.log('error while user register!', err)
 				return next(err)
 			}
+			// res.json(correspondent)
+			res.redirect('/correspondents/'+correspondent._id)
 		})
 	}
 }

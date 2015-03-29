@@ -1,6 +1,14 @@
 <h1 class="page__header">Submit a new report for {{correspondent.name}}</h1>
-<p>If no name, show dropdown?</p>
 <form action="/reports/new" method="POST">
+	<div class="field">
+		<label>Correspondent</label>
+		<select>
+			{{#each blob}}
+			<option>{{name}} ({{phoneNumber}})</option>
+			{{/each}}
+		</select>
+	</div>
+
 	<div class="field">
 		<label for="status">Status</label>
 		<label><input type="radio" name="status" value="green">Green</label>

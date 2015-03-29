@@ -1,5 +1,6 @@
 var express = require('express')
 	, router = express.Router()
+	, Account = require('../models/account')
 	, reportController = require('../controllers/reports')
 
 router.route('/reports')
@@ -8,7 +9,15 @@ router.route('/reports')
 
 router.route('/reports/new')
 	.get(function(req, res) {
-		res.render('reports/new')
+		Account
+		.find({isCorrespondent: true})
+		.select('-hash -salt')
+		.exec(function(err, correspondents, count) {
+			// res.json(correspondents)
+			res.render('reports/new', {
+				blob: correspondents
+			})
+		})
 	})
 	.post(reportController.post)
 
