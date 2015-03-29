@@ -88,9 +88,16 @@ router.route('/correspondents')
 		})
 	})
 
-router.route('/correspondents/new')
+router.route('/correspondents/:id/report')
 	.get(function(req, res) {
-		res.render('correspondents/new')
+		Account
+		.findById(req.params.id)
+		.select('-hash -salt')
+		.exec(function(err, correspondent, count) {
+			res.render('reports/new', {
+				correspondent: correspondent
+			})
+		})
 	})
 	.post(accountController.newCorrespondent)
 

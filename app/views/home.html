@@ -1,3 +1,11 @@
 Home
-
-{{>correspondentForm}}
+<ul>
+{{#if user }}
+	<li><a href="/correspondents">Correspondents</a></li>
+	<li><a href="/reports/new">New Report</a></li>
+	<li><a href="/account">Account</a></li>
+{{ else }}
+	<li><a href="/register" class="navbar__link modalTrigger" data-modal="register">Join</a></li>
+	<li><a href="/login" class="navbar__link modalTrigger" data-modal="login">Log in</a></li>
+{{/if }}
+</ul>

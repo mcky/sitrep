@@ -1,4 +1,4 @@
-<h1 class="page__header">Submit a new report</h1>
+<h1 class="page__header">Submit a new report for {{correspondent.name}}</h1>
 
 <form action="/reports/new" method="POST">
 	<div class="field">
@@ -27,6 +27,8 @@
 		<label>Message</label>
 		<input type="text" name="messafe" value="">
 	</div>
+
+	<input type="hidden" name="id" value="{{correspondent._id}}">
 
 	<input type="submit" value="Submit" class="auth-form__button">
 </form>
