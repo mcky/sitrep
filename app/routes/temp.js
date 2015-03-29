@@ -156,7 +156,7 @@ router.route('/twilio')
 		if(typeof q === 'undefined'){
 			q = req.body.Body
 		}
-		console.log('search: ', q)
+		console.log('search::'+q+'::')
 		var status = 'red'
 		if (q == 'red' || q == 'r') {
 			status == 'red'
