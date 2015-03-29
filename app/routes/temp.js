@@ -24,6 +24,7 @@ router.get('/dev/clear/reports', function(req, res) {
 router.get('/dev/list/reports', function(req, res) {
 	Report
 		.find({})
+		.sort('-timestamp')
 		.exec(function(err, reports, count) {
 			res.json(reports)
 		})
@@ -125,6 +126,7 @@ router.route('/correspondents/:id')
 				Report
 					.find({belongsTo: correspondent._id})
 					.select('-hash -salt')
+					.sort('-timestamp')
 					.exec(function(err, correspondent2, count) {
 						callback(null, correspondent, correspondent2)
 					})
@@ -156,6 +158,7 @@ router.route('/twilio')
 		if(typeof q === 'undefined'){
 			q = req.body.Body
 		}
+		console.log('sms::'+req.body+'::')
 		console.log('search::'+q+'::')
 		var status = 'red'
 		if (q == 'red' || q == 'r') {
