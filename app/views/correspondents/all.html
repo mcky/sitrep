@@ -1,13 +1,18 @@
-<h1>All correspondents</h1>
-
-<hr>
-<div>
+<header class="correspondents__header">
+	<h1>All correspondents</h1>
+	<!-- <input type="search"> -->
+</header>
+<div class="correspondents">
+	<ul class="correspondents__list correspondents__list--grid">
 	{{#each correspondents}}
-		<a href="/correspondents/{{_id}}">{{name}}</a> <br>
-		{{phoneNumber}} <br>
-		Status: -{{lastSatus}}- <br>
-		Time since checkin: -{{lastCheckinTime}}-
-		<hr>
+		<li class="correspondents__list__item correspondents__list__item--{{reports.[0].status}}">
+			<a href="/correspondents/{{_id}}">
+			<!-- <img src="http://placehold.it/130" class="correspondent__photo"> -->
+			<b>{{name}}</b> <br>
+			{{timeAgo reports.[0].timestamp}}
+			</a>
+		</li>
 	{{/each}}
+	</ul>
 </div>
 <a href="/correspondents/new" class="button">Add correspondent</a>

@@ -31,7 +31,7 @@ gulp.task('sass', function() {
 gulp.task('serve', ['scripts', 'sass'], function() {
     if (util.env.sync) {
         browserSync({
-            proxy: 'rls.dev'
+            proxy: 'sitrep.dev'
         })
     }
 

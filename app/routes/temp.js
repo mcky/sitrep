@@ -83,6 +83,9 @@ router.route('/correspondents')
 		Account
 		.find({isCorrespondent: true})
 		.select('-hash -salt')
+		.sort('-lastUpdate')
+		// .populate('reports')
+		.populate({path: 'reports', options: { sort: '-timestamp' }})
 		.exec(function(err, correspondents, count) {
 			// res.json(correspondents)
 			res.render('correspondents/all', {

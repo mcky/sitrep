@@ -2,24 +2,24 @@ var fs = require('fs')
 	, hbs = require('hbs')
 	, moment = require('moment')
 	, Report = require('../models/report')
+	, Account = require('../models/account')
 
 reportController = {
 	list: function(req, res, next) {
-		Report.find(function(err, reports) {
-			if (err)
-				res.send(err)
-			res.json(reports)
-		})
+		Report
+			.find()
+			.sort('-timestamp')
+			.populate('belongsTo')
+			.exec(function(err, reports) {
+				// res.json(reports)
+				res.render('reports/all', {
+					reports: reports
+				})
+			})
 	}
 
 	, post: function(req, res, next) {
 		var correspondantId = req.body.correspondantId || req.body.correspondentIdPicker
-		// if (req.body.correspondantId && req.body.correspondantId !== '') {
-		// 	correspondantId = req.body.correspondantId
-		// } else {
-		// 	// check, error if none
-		// 	correspondantId = req.body.correspondantIdPicker
-		// }
 
 		var report = new Report({
 			status: req.body.status
@@ -42,6 +42,11 @@ reportController = {
 			res.redirect('/correspondents/'+correspondantId)
 			// res.redirect('/reports/'+report._id)
 			// res.json([{saved:report}, {src:req.body}])
+			Account.findById(correspondantId, function(err, account) {
+				account.lastUpdate = report.timestamp
+                account.reports.push(report)
+                account.save()
+            })
 		})
 	}
 

@@ -5,7 +5,7 @@ var mongoose = require('mongoose')
 var Report = new Schema({
 	status: String
 	, inputSource: String
-	, belongsTo: String
+	, belongsTo: { type: mongoose.Schema.Types.ObjectId, ref: 'Account'}
 	, timestamp: Date
 	, hasBeenViewed: Boolean
 	, sentFrom: String // Phone #

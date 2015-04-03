@@ -8,9 +8,11 @@ var Account = new Schema({
 	, isCorrespondent: Boolean
 	, phoneNumber: String
 	, dateRegistered: Date
+	, lastUpdate: Date
 	// , correspondents: [{
 		// ObjectID
 	// }]
+	, reports : [{ type: Schema.ObjectId, ref: 'Report' }]
 })
 
 Account.plugin(passportLocalMongoose,{

@@ -31,7 +31,8 @@ body {
 
 .main {
 	@include breakpoint(medium) {
-		@include outer-container(65%);
+		@include outer-container(80%);
+		// @include outer-container(65%);
 	}
 	background: $color;
 	padding: $base-spacing;
@@ -48,39 +49,6 @@ body {
 	margin-bottom: 1rem;
 }
 
-.guide {
-	&__section {
-		@include row;
-		margin-bottom: 1rem;
-
-		// opacity: 0.6;
-		// &--active {
-		// 	opacity: 1;
-		// }
-	}
-
-	&__label {
-		font-size: 1.3em;
-	}
-
-	&__field {
-		@include span-columns(7);
-		height: 6rem;
-	}
-
-	&__help {
-		@include span-columns(5);
-		font-size: 0.9em;
-
-		p {
-			margin-bottom: 0;
-		}
-
-		ul {
-			@extend %default-ul;
-		}
-	}
-}
 
 .clear {
 	@include clearfix;
@@ -177,6 +145,11 @@ body {
 	}
 }
 
+$status-green: darken(#dff0d8, 15%);
+$status-amber: darken(#fcf8e3, 15%);
+$status-red: darken(#b94a48, 15%);
+$status-blank: #ccc;
+
 .status {
 	margin-bottom: .5rem;
 	&:before {
@@ -187,25 +160,103 @@ body {
 		width: 1.3rem;
 		margin: .2rem .3rem 0 0;
 		border-radius: 100%;
-		background: currentColor;
+		background: $status-blank;
 		color: rgba(0,0,0,0);
 	}
 
 	&--green {
 		&:before {
-			background: darken(#dff0d8, 15%);
+			background: $status-green;
 		}
 	}
 
 	&--amber {
 		&:before {
-			background: darken(#fcf8e3, 15%);
+			background: $status-amber;
 		}
 	}
 
 	&--red {
 		&:before {
-			background: darken(#b94a48, 15%);
+			background: $status-red;
 		}
+	}
+}
+
+.map,
+.reports {
+	@include med-span(6);
+}
+
+.report {
+	&__list {
+		&__item {
+			padding: .5rem 1rem;
+			// drop-shadow: 0 1px #e7e7e7;
+			box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.05);
+			background: rgba(0,0,0,0.01);
+			margin-bottom: 1rem;
+			border-left: .3rem solid $status-blank;
+			&--green {
+				border-color: $status-green;
+			}
+
+			&--amber {
+				border-color: $status-amber;
+			}
+
+			&--red {
+				border-color: $status-red;
+			}
+		}
+
+	}
+}
+
+
+
+.correspondent {
+	&__photo {
+		display: block;
+		margin: 0 auto;
+		border-radius: 100%;
+
+		border: .2rem solid $status-red;
+		width: 70%;
+	}
+}
+.correspondents {
+	&__list {
+		@include row;
+		&__item {
+			@include med-span(3);
+			@include omega(4n);
+			box-shadow: 1px 1px 0px 0px rgba(0,0,0,0.05);
+			background: rgba(0,0,0,0.01);
+			margin-bottom: 1rem;
+			border-bottom: .4rem solid $status-blank;
+			text-align: center;
+
+			&--green {
+				border-color: $status-green;
+			}
+
+			&--amber {
+				border-color: $status-amber;
+			}
+
+			&--red {
+				border-color: $status-red;
+			}
+
+			a {
+				display: block;
+				padding: 1.5rem 1rem;
+			}
+			.correspondent__photo {
+				margin-bottom: 1rem;
+			}
+		}
+
 	}
 }
