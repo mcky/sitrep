@@ -1,5 +1,6 @@
-# Sitrep!
+# Sitrep
 
+## About
 Sitrep is a tool designed to help improve contact between foreign correspondents and their editors/news desks, particuarly in emergency sitatuions.  
 The service allows reporters in danger to quickly report their status (green, amber or red), currently via SMS or speed-dial. The experience is designed to work from the most basic 'dumb' phones upwards, meaning the reporter won't have to carry any extra equipment.  
 The web application allows editors to quickly get an overview of the status and locations of all their reporters and to integrate into their existing workflows and protocols. 
